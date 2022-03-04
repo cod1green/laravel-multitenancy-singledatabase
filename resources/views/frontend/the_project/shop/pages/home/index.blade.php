@@ -1,0 +1,9 @@
+<x-frontend-layout>
+    @include('frontend.the_project.shop.pages.home._partials.banner')
+    @include('frontend.the_project.shop.pages.home._partials.about')
+    @include('frontend.the_project.shop.pages.home._partials.services')
+    @include('frontend.the_project.shop.pages.home._partials.teams')
+    @include('frontend.the_project.shop.pages.home._partials.products')
+    @include('frontend.the_project.shop.pages.home._partials.partners')
+    @include('frontend.the_project.shop.pages.home._partials.additional')
+</x-frontend-layout>

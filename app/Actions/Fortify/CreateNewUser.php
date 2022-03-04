@@ -2,8 +2,7 @@
 
 namespace App\Actions\Fortify;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Services\TenantService;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
@@ -20,17 +19,23 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => $this->passwordRules(),
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-        ])->validate();
+        if (!$plan = session('plan')) {
+            return redirect()->route('site.home');
+        }
 
-        return User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-        ]);
+        Validator::make(
+            $input,
+            [
+                'document' => ['required', 'string', 'max:255'],
+                'company' => ['required', 'string', 'min:3', 'max:255'],
+                'name' => ['required', 'string', 'min:3', 'max:255'],
+                'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:14', 'max:15'],
+                'email' => ['required', 'string', 'email', 'min:3', 'max:255', 'unique:users'],
+                'password' => $this->passwordRules(),
+                'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
+            ]
+        )->validate();
+
+        return app(TenantService::class)->make($plan, $input);
     }
 }

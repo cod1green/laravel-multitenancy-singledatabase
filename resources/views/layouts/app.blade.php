@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>
+        @section('title')
+            Admin
+        @show
+    </title>
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+          rel="stylesheet">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ mix('css/dashboard.css') }}">
+    @livewireStyles
+    @stack('styles')
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed font-sans antialiased">
+<div id="app" class="wrapper">
+    @include('layouts._partials.navbar')
 
-        @livewireStyles
+    @include('layouts._partials.sidebar')
 
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <x-jet-banner />
+    @include('layouts._partials.content')
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+    @include('layouts._partials.footer')
+</div>
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+<!-- Scripts -->
+<script>window.Laravel = {!! json_encode(['tenantId' => auth()->check() ? auth()->user()->tenant_id : '']) !!}</script>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+@stack('modals')
 
-        @stack('modals')
+@livewireScripts
 
-        @livewireScripts
-    </body>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
+<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ mix('js/dashboard/dashboard.js') }}"></script>
+<script src="{{ mix('js/dashboard/component.js') }}"></script>
+
+@stack('scripts')
+
+</body>
 </html>

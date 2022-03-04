@@ -10,14 +10,40 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.1",
         "@tailwindcss/forms": "^0.4.0",
         "@tailwindcss/typography": "^0.5.0",
-        "alpinejs": "^3.0.6",
+        "@trevoreyre/autocomplete-vue": "^2.2.0",
+        "@vue/composition-api": "^1.4.3",
+        "admin-lte": "^3.1.0",
+        "alpinejs": "^3.2.6",
         "axios": "^0.25",
+        "bootstrap": "^4.6.0",
+        "bootstrap-v5": "npm:bootstrap",
+        "browser-sync": "^2.27.7",
+        "browser-sync-webpack-plugin": "^2.3.0",
+        "jquery": "^3.5.1",
+        "jquery.inputmask": "^3.3.4",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
+        "overlayscrollbars": "^1.13.0",
+        "popper.js": "^1.16.1",
         "postcss": "^8.1.14",
         "postcss-import": "^14.0.1",
-        "tailwindcss": "^3.0.0"
+        "resolve-url-loader": "^4.0.0",
+        "sass": "^1.43.4",
+        "sass-loader": "^12.1.0",
+        "tailwindcss": "^3.0.0",
+        "v-money": "^0.8.1",
+        "vue": "^2.6.14",
+        "vue-loader": "^15.9.7",
+        "vue-template-compiler": "^2.6.14",
+        "vue-the-mask": "^0.11.1",
+        "vue-toastify": "^1.8.1",
+        "vue2-filters": "^0.14.0"
+    },
+    "dependencies": {
+        "laravel-echo": "^1.11.3",
+        "socket.io-client": "^2.3.0"
     }
 }

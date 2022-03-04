@@ -1,0 +1,101 @@
+.img-circle {
+    border-radius: 50%;
+}
+
+/* Footer whatsapp
+---------------------------------- */
+.footer-whatsapp {
+    position: fixed;
+    bottom: 60px;
+    right: 5px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 1005;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.footer-whatsapp.fadeToTop {
+    -webkit-animation-name: fadeToTop;
+    animation-name: fadeToTop;
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.footer-whatsapp.fadeToBottom {
+    -webkit-animation-name: fadeToBottom;
+    animation-name: fadeToBottom;
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+/* Small devices (tablets, phones less than 767px) */
+@media (max-width: 767px) {
+    .footer-whatsapp {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.header-top {
+    &.colored a,
+    &.colored a i {
+        color: $white;
+        text-decoration: none;
+    }
+
+    &.colored .dropdown-menu .dropdown-item {
+        padding: 0.25rem 0.25rem;
+    }
+
+    &.colored .dropdown-menu .dropdown-item:hover,
+    &.colored .dropdown-menu .dropdown-item:focus {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+}
+
+.header-dropdown-buttons {
+    .btn-group {
+        .dropdown-menu {
+            padding: 10px;
+
+            li > a,
+            li > a i {
+                color: #333333;
+            }
+
+            .dropdown-item {
+                padding: 0.25rem 0.25rem;
+            }
+        }
+    }
+
+    .btn-group > .btn-img > .img-user {
+        height: 40px;
+        width: 40px;
+        max-height: 40px;
+        max-width: 40px;
+    }
+
+    .btn-group.show > .btn-img,
+    .btn-group > .btn-img:hover {
+        background-color: transparent !important;
+        border-color: transparent !important;
+    }
+
+    .btn-group > .btn-img:focus,
+    .btn-group > .btn-img.focus {
+        outline: 0;
+        box-shadow: none;
+    }
+}
