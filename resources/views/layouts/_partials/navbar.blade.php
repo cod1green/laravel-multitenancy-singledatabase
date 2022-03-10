@@ -14,7 +14,7 @@
         </li>
 
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('shop.home') }}" class="nav-link">
+            <a href="{{ route('tenant:shop.home') }}" class="nav-link">
                 {{ __('Home') }}
             </a>
         </li>

@@ -11,13 +11,13 @@ class Tenant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'uuid',
+        'domain',
+        'subdomain',
         'document',
         'company',
         'name',
         'phone',
         'email',
-        'url',
         'logo',
         'about',
         'active',
@@ -71,5 +71,10 @@ class Tenant extends Model
     public function getUpdatedAttribute()
     {
         return Carbon::make($this->updated_at)->format("d/m/Y à\s H:i:s");
+    }
+
+    public function route($name, $parameters = []) {
+        $host = $this->domain ?? $this->subdomain;
+        return 'https://' . $host . app('url')->route($name, $parameters, false);
     }
 }

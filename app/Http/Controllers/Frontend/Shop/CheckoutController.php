@@ -7,7 +7,6 @@ use App\Http\Requests\Shop\CheckoutRequest;
 use App\Mail\OrderPlaced;
 use App\Models\{Order, Product};
 use App\Services\Order\OrderCreator;
-use App\Tenant\ManagerTenant;
 use Cartalyst\Stripe\Exception\CardErrorException;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -99,7 +98,7 @@ class CheckoutController extends Controller
     private function addOrderToTable($request, $error = null): Order
     {
         $data = [
-            'tenant_id' => app(ManagerTenant::class)->getTenantIdentify(),
+//            'tenant_id' => app(ManagerTenant::class)->getTenantIdentify(),
             'user_id' => auth()->user()->id ?? null,
             'billing_email' => $request->email,
             'billing_name' => $request->name,

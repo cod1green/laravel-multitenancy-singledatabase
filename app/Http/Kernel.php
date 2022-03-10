@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'check.choice.plan' => \App\Http\Middleware\CheckIfSelectPlan::class,
         'subscribed' => \App\Http\Middleware\EnsureUserIsSubscribed::class,
+        'identify.tenant' => \App\Http\Middleware\IdentifyTenant::class,
     ];
 }

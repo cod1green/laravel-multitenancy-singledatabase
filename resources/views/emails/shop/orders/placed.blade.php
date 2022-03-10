@@ -17,7 +17,7 @@ Quantidade: {{ $product->pivot->quantity }} <br><br>
 @endforeach
 Você pode obter mais detalhes sobre seu pedido acessando nosso site.
 
-@component('mail::button', ['url' => route('shop.home')])
+@component('mail::button', ['url' => route('tenant:shop.home')])
     Ir para o site
 @endcomponent
 

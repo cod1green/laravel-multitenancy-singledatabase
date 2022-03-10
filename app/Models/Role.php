@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Tenant\ManagerTenant;
+use App\Tenant\Services\TenantManager;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,7 +37,7 @@ class Role extends Model
                 $queryFilter->where('users.email', 'LIKE', "%{$filter}%");
             }
         })
-        ->where('tenant_id', app(ManagerTenant::class)->getTenantIdentify());
+        ->where('tenant_id', app(TenantManager::class)->getTenant()->id);
     }
 
     public function permissionsAvailable($filter)

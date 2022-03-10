@@ -2,23 +2,17 @@
 
 namespace App\Tenant\Observers;
 
-use App\Tenant\ManagerTenant;
+use App\Tenant\Services\TenantManager;
 use Illuminate\Database\Eloquent\Model;
 
 class TenantObserver
 {
-    /**
-     * Handle the Tenant "creating" event.
-     *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return void
-     */
     public function creating(Model $model)
     {
-        $managerTenant = app(ManagerTenant::class);
-        $identify = $managerTenant->getTenantIdentify();
+        if (! $model->tenant_id && ! $model->relationLoaded('tenant')) {
+            $model->setRelation('tenant', app(TenantManager::class)->getTenant());
+        }
 
-        if($identify)
-            $model->tenant_id = $identify;
-    }    
+        return $model;
+    }
 }

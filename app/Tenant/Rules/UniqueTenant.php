@@ -2,7 +2,7 @@
 
 namespace App\Tenant\Rules;
 
-use App\Tenant\ManagerTenant;
+use App\Tenant\Services\TenantManager;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
@@ -15,10 +15,10 @@ class UniqueTenant implements Rule
      * @return void
      */
     public function __construct(
-        string $table, 
-        $value = null, 
+        string $table,
+        $value = null,
         $column = 'id',
-        $valueTenant = null, 
+        $valueTenant = null,
         $columnTenant = 'id'
     )
     {
@@ -38,18 +38,18 @@ class UniqueTenant implements Rule
      */
     public function passes($attribute, $value)
     {
-        if (!$tenantId = app(ManagerTenant::class)->getTenantIdentify()) 
+        if (!$tenantId = app(TenantManager::class)->getTenant()->id)
         {
             $tenantId = DB::table('tenants')
-                                ->where("{$this->columnTenant}", $this->valueTenant)
-                                ->first()
-                                ->id;
+                ->where("{$this->columnTenant}", $this->valueTenant)
+                ->first()
+                ->id;
         }
 
         $register = DB::table($this->table)
-                            ->where('tenant_id', $tenantId)
-                            ->where($attribute, $value)
-                            ->first();
+            ->where('tenant_id', $tenantId)
+            ->where($attribute, $value)
+            ->first();
 
         if($register && $register->{$this->column} == $this->value)
             return true;

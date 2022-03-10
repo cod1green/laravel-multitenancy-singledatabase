@@ -11,7 +11,13 @@ class Category extends Model
     use HasFactory;
     use TenantTrait;
 
-    protected $fillable = ['name', 'slug', 'icon', 'description', 'tenant_id'];
+    protected $fillable = [
+        'tenant_id',
+        'name',
+        'slug',
+        'icon',
+        'description'
+    ];
 
     public function products()
     {

@@ -11,17 +11,24 @@ class ProductSeeder extends Seeder
 {
     public function run()
     {
-        $products = Product::factory()
-            ->count(5)
-            ->for(Tenant::first())
-            ->create();
+        $tenants = Tenant::all();
 
-        $categories = Category::all();
-
-        $products->each(
-            fn($product) => $product->categories()->attach(
-                $categories->random(rand(1, 3))->pluck('id')->toArray()
-            )
+        $tenants->each(
+            fn($tenant) => Product::factory()->count(5)->for($tenant)->create()
         );
+
+
+//        $products = Product::factory()
+//            ->count(5)
+//            ->for(Tenant::first())
+//            ->create();
+//
+//        $categories = Category::all();
+//
+//        $products->each(
+//            fn($product) => $product->categories()->attach(
+//                $categories->random(rand(1, 3))->pluck('id')->toArray()
+//            )
+//        );
     }
 }

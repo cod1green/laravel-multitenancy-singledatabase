@@ -16,7 +16,7 @@
 
                     <!-- logo -->
                     <div id="logo" class="logo">
-                        <a href="{{ route('shop.home') }}">
+                        <a href="{{ route('tenant:shop.home') }}">
                             <img id="logo_img" width="63" height="63"
                                  src="{{ asset('frontend/the_project/img/ctforcabruta/logo.png')  }}"
                                  alt="Logo">
@@ -47,7 +47,7 @@
 
                                 <!-- logo -->
                                 <div id="logo-mobile" class="logo">
-                                    <a href="{{ route('shop.home') }}">
+                                    <a href="{{ route('tenant:shop.home') }}">
                                         <img id="logo-img-mobile" width="50" height="50"
                                              src="{{ asset('frontend/the_project/img/ctforcabruta/logo.png')  }}"
                                              alt="The Project">
@@ -77,10 +77,10 @@
                                 <!-- main-menu -->
                                 <ul class="navbar-nav ml-lg-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link smooth-scroll active" href="{{ route('shop.home') }}">Home</a>
+                                        <a class="nav-link smooth-scroll active" href="{{ route('tenant:shop.home') }}">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link smooth-scroll" href="{{ route('shop.home', '#about') }}">Sobre</a>
+                                        <a class="nav-link smooth-scroll" href="{{ route('tenant:shop.home', '#about') }}">Sobre</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link smooth-scroll" href="#class">Aulas</a>

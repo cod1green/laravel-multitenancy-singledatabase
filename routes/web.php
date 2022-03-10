@@ -269,10 +269,10 @@ Route::middleware(['auth:sanctum', 'verified'])
         }
     )->name('dashboard');
 
-/**
- * Frontend e-shop company
- */
-Route::get('/', App\Http\Controllers\Frontend\Shop\HomeController::class)->name('shop.home');
+///**
+// * Frontend e-shop company
+// */
+//Route::get('/', App\Http\Controllers\Frontend\Shop\HomeController::class)->name('shop.home');
 
 /**
  * Frontend Search
@@ -360,3 +360,15 @@ Route::get(
         return new App\Mail\OrderPlaced(App\Models\Order::where('id', $id)->first());
     }
 );
+
+Route::group([
+    'middleware' => ['identify.tenant'],
+    'as' => 'tenant:',
+], function () {
+    // Tenant routes here
+
+    /**
+     * Frontend e-shop company
+     */
+    Route::get('/', App\Http\Controllers\Frontend\Shop\HomeController::class)->name('shop.home');
+});

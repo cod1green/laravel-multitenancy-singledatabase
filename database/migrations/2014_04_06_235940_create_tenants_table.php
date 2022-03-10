@@ -12,18 +12,17 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create(
-            'tenants',
-            function (Blueprint $table) {
-                $table->id();
-                $table->foreignId('plan_id')->constrained();
+        Schema::create('tenants', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('plan_id')->constrained();
             $table->uuid('uuid')->unique();
-            $table->string('document')->unique();
-            $table->string('company')->unique();
-            $table->string('name')->unique();
+            $table->string('domain')->nullable();
+            $table->string('subdomain')->nullable();
+            $table->string('document');
+            $table->string('company');
+            $table->string('name');
             $table->string('phone')->nullable();
-            $table->string('email')->unique();
-            $table->string('url')->unique();
+            $table->string('email');
             $table->string('logo')->nullable();
             $table->text('about')->nullable();
 

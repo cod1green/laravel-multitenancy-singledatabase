@@ -27,11 +27,11 @@ class TenantFactory extends Factory
         return [
             'uuid' => $this->faker->uuid(),
             'plan_id' => $plan ?? Plan::factory()->create(),
+            'domain' => $this->faker->unique()->domainName,
             'name' => $this->faker->unique()->name,
             'company' => $this->faker->unique()->company,
             'document' => $this->faker->cnpj(false),
             'phone' => $this->faker->phoneNumber(),
-            'url' => $this->faker->url(),
             'email' => $this->faker->unique()->companyEmail,
         ];
     }
